@@ -12,7 +12,7 @@ function registrationCorrect() {
  	if ($_POST['password'] != $_POST['password2']) return false; //равен ли пароль его подтверждению
 	$login = $_POST['login'];
 	global $dblink;
-	$rez = mysqli_query($dblink,"SELECT * FROM users WHERE login='$login'");
+	$rez = mysqli_query($dblink,"SELECT * FROM user WHERE login='$login'");
 	if (mysqli_num_rows($rez) != 0) return false; // проверка на существование в БД такого же логина
 	return true; //если выполнение функции дошло до этого места, возвращаем true }
 }
@@ -24,7 +24,7 @@ function enter ()
 		$login = $_POST['login']; 
 		$password = $_POST['password'];
 		global $dblink ;
-		$rez = mysqli_query($dblink,"SELECT * FROM users WHERE login='$login'"); //запрашиваем строку из БД с логином, введённым пользователем 
+		$rez = mysqli_query($dblink,"SELECT * FROM user WHERE login='$login'"); //запрашиваем строку из БД с логином, введённым пользователем 
 		$count=	mysqli_num_rows($rez);
 		if ($count == 1) //если нашлась одна строка, значит такой юзер существует в БД 		
 		{ 			
@@ -32,7 +32,7 @@ function enter ()
 			if (md5($password) == $row['password']) //сравниваем хэшированный пароль из БД с хэшированными паролем, введённым пользователе		
 			{ 				
 				$_SESSION['id'] = $row['id'];	//записываем в сессию id пользователя 				
-				$id = $_SESSION['id']; 								
+				//$id = $_SESSION['id']; 								
 				return $error; 			
 			} 			
 			else //если пароли не совпали 			
@@ -56,5 +56,16 @@ function enter ()
 		$error[] = "Поля не должны быть пустыми!"; 				
 		return $error; 	
 	} 
+}
+
+function CorrectSetting()
+{
+	if ($_POST['login'] == "") return false;
+	if ($_POST['mail'] == "") return false;
+	if (!preg_match('/^([a-z0-9])(\w|[.]|-|_)+([a-z0-9])@([a-z0-9])([a-z0-9.-]*)([a-z0-9])([.]{1})([a-z]{2,4})$/is', $_POST['mail'])) return false;
+	if (!preg_match('/^([a-zA-Z0-9])(\w|-|_)+([a-z0-9])$/is', $_POST['login'])) return false;
+	return true;
+
+
 }
 ?>

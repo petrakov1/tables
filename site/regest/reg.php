@@ -1,5 +1,5 @@
 
-<form method="post" action="index.php">
+<form method="post" action="reg_controller.php">
 Логин: <input id="login" type="text" name="login" /><br />
 Почта: <input id="mail" type="text" name="mail" /><br />
 Пароль: <input id="pass" type="password" name="password" /><br />
