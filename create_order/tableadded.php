@@ -4,7 +4,7 @@
 </head>
 <body>
 	<?php
-		if(isset($_POST['submit'])) {
+
 
 			$data_missing = array();
 
@@ -39,29 +39,14 @@
 					echo mysqli_error();
 					mysqli_close($dbc);
 				}
-			} else {
+			} else
+{
 				echo 'You need to enter following data<br />';
 				foreach($data_missing as $missing) {
 					echo "$missing<br />";
 				}
 			}
-		}
+
 	 ?>
-
-	 <form action="http://localhost/tableadded.php" method="post">
-	 	<b>Add a New Table</b>
-
-	 	<p>Name:
-	 		<input type = "text" name = "name" size="30" value=""</>
-	 	</p>
-
-	 	<p>Json text:
-	 		<input type = "text" name = "json" size="30" value=""</>
-	 	</p>
-
-	 	<p>
-	 		<input type="submit" name="submit" value="Send" />
-	 	</p>
-	 </form>
  </body>
 </html>
