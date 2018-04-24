@@ -30,7 +30,7 @@ function searchOrders()
    
         $.ajax({
             type: "GET", // Method type GET/POST
-            url: "searchOrders.php?query="+$("#query").val(), //Ajax Action url
+            url: "scripts/searchOrders.php?query="+$("#query").val(), //Ajax Action url
     
             beforeSend: function(){
             },
@@ -53,7 +53,7 @@ $(document).ready( function () {
     e.preventDefault();
     $.ajax({
         type: "POST", // Method type GET/POST
-        url: "createOrder.php", //Ajax Action url
+        url: "scripts/createOrder.php", //Ajax Action url
         data: $(this).serialize(),
 
         beforeSend: function(){
