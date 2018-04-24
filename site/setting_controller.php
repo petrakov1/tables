@@ -29,7 +29,27 @@ if (isset($_SESSION['id']))
 else 
 {
 	header('Location: /site');
-}
+} 
+?>
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Авторизация</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <section class="container">
+    <div class="login">
+      <h1>Изменить</h1>
 
+<?php
 include ('regest/setting.php'); //подключаем файл с формой
 ?>
+
+   </div>
+  </section>
+</body>
+</html>
