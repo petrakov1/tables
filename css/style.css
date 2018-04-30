@@ -387,3 +387,26 @@ input[type=number]
     max-height: calc(80vh - 300px);
     overflow: scroll;
 }
+
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    padding: 20px 0;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    background: white;
+}
+#nav > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+#nav a {
+    color: black;
+    text-decoration: none;
+}
+
+

@@ -16,7 +16,7 @@ include "scripts/func.php"; //подключаем библиотеку функ
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Таблицы</title>
+    <title>Поставщики</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
@@ -27,14 +27,6 @@ include "scripts/func.php"; //подключаем библиотеку функ
 </head>
 
 <body>
-    <div id="nav">
-        <div>
-            
-            <a href="">Главная</a>
-            <a href="">Поставщики</a>
-            <a href="">Выход</a>
-        </div>
-    </div>
     <section class="container">
         <div class="main">
             <div class="list">
@@ -51,8 +43,8 @@ include "scripts/func.php"; //подключаем библиотеку функ
             </div>
             <div class="tables">
                 <div class="tab">
-                    <button class="tablinks active" onclick="openTab(event, 'tab1')">Заказ <span id="name1">Б24_12838</span></button>
-                    <button class="tablinks" onclick="openTab(event, 'tab2');concatTable();">Сводная таблица заказа <span id="name2">Б24_12838</span></button>
+                    <button class="tablinks active" onclick="openTab(event, 'tab1')">Поставщики</button>
+                    <button class="tablinks" onclick="openTab(event, 'tab2')">Списки поставщиков</button>
                     <!-- <button class="tablinks" onclick="openTab(event, 'tab3')"> ...</button> -->
                 </div>
 
@@ -66,21 +58,20 @@ include "scripts/func.php"; //подключаем библиотеку функ
                 
                     </div>
                     <div>
-                    <input type="text" name="" value="2,3,10-100,10" id="delete_rows">
+                    <input type="text" name="number" value="2,3,10-100,10" id="delete_rows">
                     <input type="button" value="Удалить строки" class="button button-small" onclick="removeRow()">
                 
                     </div>
                     <p>Ссылка для заказчика: <br> 
                         <a id="link" href="">link</a>
                     </p>
-                    <p class="button" onclick="save()">Сохранить изменения</p>
+                    <p class="button" onclick="saveProviders()">Сохранить изменения</p>
                     
                 </div>
                 <div id="tab2" class="tabcontent ">
                     <div id="tab2-container">
 
                     </div>
-                    <p class="button" onclick="save()">Скопировать товары в буфер обмена</p>
                 </div>
           
                 
@@ -101,7 +92,8 @@ include "scripts/func.php"; //подключаем библиотеку функ
         </form>
     </div>
     <script>
-       
+        openProviders();
+        openProvidersLists();
     </script>
 </body>
 

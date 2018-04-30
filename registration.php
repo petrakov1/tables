@@ -26,9 +26,9 @@
 				</p><p><input id="re_pass" type="password" name="password2" placeholder="Подтверждение" />
 					<p>
 						Выберите тип пользователя: <select name="type_user">      
-							<option selected="selected">Менеджер по покупкам</option>
-							   <option>Менеджер по закупкам</option>
-							<option>менеджер по покупкам и заказам</option>
+							<option value="1" selected="selected">Менеджер по покупкам</option>
+							<option value="2">Менеджер по закупкам</option>
+							<option value="3">менеджер по покупкам и заказам</option>
 						</select>
 					</p>
                 </p><p class="submit"><input type="submit" name="go" value="Регистрация"></p>

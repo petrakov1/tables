@@ -1,8 +1,17 @@
 <?php
 $link = $_REQUEST["link"];
-include './scripts/connect.php'; //подключаемся к БД
-include "./scripts/func.php"; //подключаем библиотеку функций
-echo $link;
+include '../scripts/connectNew.php'; //подключаемся к БД
+
+
+$query = "SELECT * FROM links WHERE link='".$link."'";
+	
+$result = $conn->query($query);
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();	
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -29,33 +38,21 @@ echo $link;
 <body>
     <section class="container">
         <div class="main">
-          
+        <div id="">
                     <div id="table-container">
 
                     </div>
-                    <div>
-                    <input type="number" name="" value="1" id="rows_numbers">
-                    <input type="button" value="Добавить строки снизу" class="button button-small" onclick="addRow()">
-                
-                    </div>
-                    <div>
-                    <input type="number" name="" id="delete_rows">
-                    <input type="button" value="Удалить строки" class="button button-small" onclick="removeRow()">
-                
-                    </div>
-                    <p>Ссылка для заказчика: <br> 
-                        <a href="">link</a>
-                    </p>
+                    
                     <p class="button" onclick="save()">Сохранить изменения</p>
                     
-              
+                    </div>
            
         </div>
 
     </section>
    
     <script>
-       
+       openOrder(<?php echo $row["order_id"];?>);
     </script>
 </body>
 
