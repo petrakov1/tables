@@ -11,7 +11,7 @@
 <body>
     <section class="container">
         <div class="login">
-            <h1>Новый аккаунт</h1>
+            <h1>Регестрация нового пользователя</h1>
 			<form method="post" action="reg_controller.php">
                 <!-- <p><input type="text" name="name" value="" placeholder="Имя"></p>
                 <p><input type="text" name="surname" value="" placeholder="Фамилия"></p>
@@ -29,6 +29,7 @@
 							<option value="1" selected="selected">Менеджер по покупкам</option>
 							<option value="2">Менеджер по закупкам</option>
 							<option value="3">менеджер по покупкам и заказам</option>
+                            <option value="0">admin</option>
 						</select>
 					</p>
                 </p><p class="submit"><input type="submit" name="go" value="Регистрация"></p>
@@ -38,4 +39,4 @@
 </body>
 </html>
 
-<!-- <label><input id="no_xyz" type="checkbox" name="lic" value="ok" /> Обязуюсь не творить хуйни!<br /></label><br /> -->
+

@@ -1,4 +1,6 @@
 <?php
+ini_set ("session.use_trans_sid", true);
+session_start();
 include 'connect.php'; //подключаемся к БД
 include "func.php"; //подключаем библиотеку функций
 if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -8,11 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		if (count($error) == 0) //если нет ошибок, авторизируем юзера 
 		{
             
-			header('Location: home_page.php');
+			include '../Go_type.php';
 			//$admin = is_admin($UID);
         }
         else {
-            echo $error;
+            echo "<script>alert(\"Некооектные данные. Повторите,пожалйста ввод.\");</script>";
         }
 
     }

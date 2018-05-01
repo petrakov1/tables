@@ -5,7 +5,7 @@ $id_p=$_SESSION['id'];
 $rez = mysqli_query($dblink,"SELECT * FROM user WHERE id='$id_p'"); //запрашиваем строку из БД с логином, введённым пользователем 
 $data = mysqli_fetch_assoc($rez);
 echo "<p />";
-echo 'Меняй поля';
+echo '';
 echo "<p />";
 echo '<form method="post" action="setting_controller.php">';
 echo 'Логин: <input id="login" type="text" name="login" value='.$data['login'].' /><br />';

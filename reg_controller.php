@@ -19,31 +19,47 @@ if (isset($_SESSION['id']))
 			$login = htmlspecialchars($_POST['login']);
 			$password = $_POST['password'];
 			$email=htmlspecialchars($_POST['mail']);
-			$type=htmlspecialchars($_POST['type_user']);
+			$type=$_POST['type_user'];
 
 			//$salt = mt_rand(100, 999);
 			//$tm = time();
 			$password = md5($password);
-			$result = mysqli_query($dblink,"INSERT INTO user (login,password,email,type) VALUES ('$login','$password','$email',1)") or die("Ошибка " . mysqli_error($dblink)); 
+			$result = mysqli_query($dblink,"INSERT INTO user (login,password,email,type) VALUES ('$login','$password','$email','$type')") or die("Ошибка " . mysqli_error($dblink)); 
 			if ($result) //пишем данные в БД и авторизовываем пользователя
 			{	
-				header('Location: home_page.php');
-				$regged = true;
+				header('Location: personal_account.php');
+				
 				// echo "good"; //подключаем шаблон
 			}
-			// else echo "ggwp";
+			else echo "<script>alert(\"Некооектные данные. Повторите,пожалйста ввод.\");</script>";
 		}
 		else
-		{	echo "<script>alert(\"Некооектные данные. Повторите,пожалйста ввод.\");</script>"; 
-			include_once ("registration.php"); //подключаем шаблон в случае некорректности данных
-		}
-	}
-	else
-	{echo "7";
-		include_once ("registration.php"); //подключаем шаблон в случае если кнопка регистрации нажата не была, то есть, пользователь только перешёл на страницу регистрации
+		{	echo "<script>alert(\"Некооектные данные. Повторите,пожалйста ввод.\");</script>"; }
 	}
 }
 else{
-	header('Location: /site');
+	header('Location: .');
 }
 ?>
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Новый пользователь</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <section class="container">
+    <div class="login">
+      <h1>  Личный кабинет </h1>
+
+<?php
+include ('registration.php'); //подключаем файл с формой
+?>
+
+   </div>
+  </section>
+</body>
+</html>

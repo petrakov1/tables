@@ -16,7 +16,7 @@
     <div class="login">
       <h1>Войти в личный кабинет</h1>
       <form method="post" action="scripts/login.php">
-        <p><input type="text" name="login" value="" placeholder="Логин или Email"></p>
+        <p><input type="text" name="login" value="" placeholder="Логин"></p>
         <p><input type="password" name="password" value="" placeholder="Пароль"></p>
         <p class="submit"><input type="submit" name="commit" value="Войти"></p>
       </form>

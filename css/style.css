@@ -114,6 +114,19 @@ body {
 .login p.submit {
   text-align: center;
 }
+.login a{
+  color: #555;
+  text-decoration: none;
+ 
+
+
+}
+.login a:hover {
+  color: #BDB9AB;
+ 
+}
+
+
 
 :-moz-placeholder {
   color: #c9c9c9 !important;

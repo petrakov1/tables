@@ -32,7 +32,8 @@ function enter ()
 			if (md5($password) == $row['password']) //сравниваем хэшированный пароль из БД с хэшированными паролем, введённым пользователе		
 			{ 				
 				$_SESSION['id'] = $row['id'];	//записываем в сессию id пользователя 				
-				//$id = $_SESSION['id']; 								
+				//$id = $_SESSION['id'];
+				$_SESSION['type']=$row['type']; 								
 				return $error; 			
 			} 			
 			else //если пароли не совпали 			
