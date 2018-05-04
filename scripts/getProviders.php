@@ -10,6 +10,6 @@
 		$result = $conn->query($query);
 		if ($result->num_rows > 0) {
 			$row = $result->fetch_assoc();	
-			echo '{"providers":"'.str_replace('"','\"',$row['other']).'"}';
+			echo '{"last":'.$row["provider"].', "providers":"'.str_replace('"','\"',$row['other']).'"}';
 		}
 ?>

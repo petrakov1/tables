@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <title>Новый аккаунт</title>
-    <link rel="stylesheet" href="/site/css/style.css">
-</head>
-<body>
-    <section class="container">
-        <div class="login">
+
             <h1>Регестрация нового пользователя</h1>
 			<form method="post" action="reg_controller.php">
                 <!-- <p><input type="text" name="name" value="" placeholder="Имя"></p>

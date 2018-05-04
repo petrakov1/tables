@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		if (count($error) == 0) //если нет ошибок, авторизируем юзера 
 		{
             
-			include '../Go_type.php';
+			include '../personal_account.php';
 			//$admin = is_admin($UID);
         }
         else {

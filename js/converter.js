@@ -1,4 +1,3 @@
-var currentJson;
 
 function checkIfJSON(data) {
     try {

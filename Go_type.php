@@ -1,18 +1,18 @@
 <?php
 //admin
 if ($_SESSION['type']==0){
-	header('Location: personal_account.php');
+	header('Location: /admin');
 }
 //manager orders
-if ($_SESSION['type']==1){
-	header('Location: /tab/personal_account.php');
+if ($_SESSION['type']==3){
+	header('Location: /manager');
 }
 //manager provaiders
 if ($_SESSION['type']==2){
-	header('Location: personal_account.php');
+	header('Location:  /manager/buy');
 }
 //manager universal
-if ($_SESSION['type']==3){
-	header('Location: personal_account.php');
+if ($_SESSION['type']==1){
+	header('Location:  /manager/sell');
 }
 ?>

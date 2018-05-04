@@ -6,11 +6,11 @@ include '../scripts/connectNew.php'; //подключаемся к БД
 $query = "SELECT * FROM links WHERE link='".$link."'";
 	
 $result = $conn->query($query);
+
+
 if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();	
-}
-
-
+    $row = $result->fetch_assoc();
+    
 
 ?>
 
@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
     <script src="../js/converter.js"></script>
     
     <script src="../js/main.js"></script>
@@ -43,7 +43,15 @@ if ($result->num_rows > 0) {
 
                     </div>
                     
-                    <p class="button" onclick="save()">Сохранить изменения</p>
+                    <p class="button" onclick="<?php
+                    
+                    if($row["type"]==2)
+                    { 
+                        echo "saveProviderOrder()";
+                    }
+                    else echo "save()";
+                    
+                    ?>">Сохранить изменения</p>
                     
                     </div>
            
@@ -52,7 +60,22 @@ if ($result->num_rows > 0) {
     </section>
    
     <script>
-       openOrder(<?php echo $row["order_id"];?>);
+
+        <?php
+        
+        
+            if($row["type"]==2)
+            {
+                echo "openProviderOrder(".$row["order_id"]."); currentID=".$row["order_id"];
+
+            }
+            else {
+                echo "openOrder(".$row["order_id"].")";
+            }
+        }
+
+        ?>
+       
     </script>
 </body>
 

@@ -1,7 +1,7 @@
 <?php
 
-include 'scripts/connect.php'; //подключаемся к БД
-include "scripts/func.php"; //подключаем библиотеку функций
+include '../../scripts/connect.php'; //подключаемся к БД
+include "../../scripts/func.php"; //подключаем библиотеку функций
 
 ?>
 
@@ -16,17 +16,24 @@ include "scripts/func.php"; //подключаем библиотеку функ
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Поставщики</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Таблицы</title>
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/converter.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="../../js/converter.js"></script>
     
-    <script src="js/main.js"></script>
+    <script src="../../js/main.js"></script>
 </head>
 
 <body>
+    <div id="nav">
+        <div>
+            
+            <a href="">Главная</a>
+            <a href="">Поставщики</a>
+            <a href="">Выход</a>
+        </div>
+    </div>
     <section class="container">
         <div class="main">
             <div class="list">
@@ -43,13 +50,41 @@ include "scripts/func.php"; //подключаем библиотеку функ
             </div>
             <div class="tables">
                 <div class="tab">
-                    <button class="tablinks active" onclick="openTab(event, 'tab3')">Поставщики</button>
-                    <button class="tablinks" onclick="openTab(event, 'tab4')">Списки поставщиков</button>
+                    <button class="tablinks active" onclick="openTab(event, 'tab1')">Заказ <span id="name1">Б24_12838</span></button>
+                    <button class="tablinks" onclick="openTab(event, 'tab4')">Поставщики</button>
+                    <button class="tablinks" onclick="openTab(event, 'tab3')">Списки поставщиков</button>
+                    <button class="tablinks" onclick="openTab(event, 'tab2');concatTable();">Сводная таблица заказа <span id="name2">Б24_12838</span></button>
                     <!-- <button class="tablinks" onclick="openTab(event, 'tab3')"> ...</button> -->
                 </div>
 
-                <div id="tab3" class="tabcontent active" style="display: block;">
+                <div id="tab1" class="tabcontent active" style="display: block;">
                     <div id="table-container">
+
+                    </div>
+                    <div>
+                    <input type="number" name="" value="1" id="rows_numbers">
+                    <input type="button" value="Добавить строки снизу" class="button button-small" onclick="addRow()">
+                
+                    </div>
+                    <div>
+                    <input type="text" name="" value="2,3,10-100,10" id="delete_rows">
+                    <input type="button" value="Удалить строки" class="button button-small" onclick="removeRow()">
+                
+                    </div>
+                    <p>Ссылка для заказчика: <br> 
+                        <a id="link" href="">link</a>
+                    </p>
+                    <p class="button" onclick="save()">Сохранить изменения</p>
+                    
+                </div>
+                <div id="tab2" class="tabcontent ">
+                    <div id="tab2-container">
+
+                    </div>
+                    <p class="button" onclick="save()">Скопировать товары в буфер обмена</p>
+                </div>
+                <div id="tab3" class="tabcontent">
+                    <div id="table-container1">
 
                     </div>
                     <div>
@@ -82,6 +117,18 @@ include "scripts/func.php"; //подключаем библиотеку функ
         </div>
 
     </section>
+    <div class="modal">
+        <form id="newOrderForm">
+            <div class="close">
+                <span></span>
+                <span></span>
+            </div>
+            <label for="">Введите номер сделки из Битрикс24: 
+                <input type="text" name="name" id="" placeholder="Б24_****">
+            </label>
+            <input type="submit" value="Создать">
+        </form>
+    </div>
     <div class="modal">
         <form id="newListForm">
             <div class="close">

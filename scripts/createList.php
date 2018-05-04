@@ -8,10 +8,11 @@
 			} else {
 				$f_name= trim($_POST['name']);
             }
-            
+
 			if(empty($data_missing)) {
 				require "connectNew.php";
-				$template = '{}';
+                $template = $_POST['list'];
+                echo $template;
 				$query = "INSERT INTO `list_providers` (`id`, `provider_info`, `name_list`) VALUES (NULL, '".$template."', '".$f_name."')";
                
                     if (!$conn->query($query))
