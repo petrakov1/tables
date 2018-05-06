@@ -4,14 +4,13 @@
 			$data_missing = array();
 
             $data = $_POST['data'];
-            
+            $res = "{";
 			if(empty($data_missing)) {
                 require "connectNew.php";
                 
-                // echo $data['result'];
                 foreach($data['result'] as $mydata)
                 {
-                    //  echo $mydata->order_id."\n";
+                    //  echo $mydata."\n";
 
                      
 
@@ -27,11 +26,12 @@
                         include ("connect.php");
                         global $dblink;
                         $id = $conn->insert_id;
-                        $new_link=md5(time());
-                        $result = mysqli_query($dblink,"INSERT INTO links (order_id,link,type) VALUES ('$id','$new_link',2)") or die("Ошибка " . mysqli_error($dblink)); 
+                        $new_link=md5(time().$id);
+                        $result = mysqli_query($dblink,"INSERT INTO links (order_id,link,type,email,name) VALUES ('$id','$new_link',2,'".$mydata['response']."','".$mydata['order_id']."')") or die("Ошибка " . mysqli_error($dblink)); 
                         if ($result) //пишем данные в БД и авторизовываем пользователя
                           {  
-                            //   echo $new_link;
+                              
+                            $res .= '"'.$mydata['provider_id'].'":"'.$new_link.'",';
                             // http_response_code(200);
                           }
 					}
@@ -43,6 +43,8 @@
 					echo "$missing<br />";
 				}
 			}
-
-            echo $new_link;
+            $res = substr($res, 0, -1);
+            $res .= "}";
+            echo $res;
+            // echo $new_link;
 	 ?>

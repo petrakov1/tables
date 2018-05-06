@@ -18,9 +18,8 @@ echo 'Фамилия: <input id="surname" type="text" name="surname" value='.$da
 echo "<p />";
 echo 'Сайт компании: <input id="site" type="text" name="site" value='.$data['site'].' /><br />';
 echo "<p />";
-echo 'Телефон: <input id="phone" type="text" name="phone" value='.$data['phone'].' /><br />';
+echo 'Телефон: <input id="phone" type="text" name="tel" value='.$data['phone'].' /><br />';
 echo "<p />";
-echo 'Пароль: <input id="password" type="text" name="password" value='.$data['password'].' /><br />';
 echo "<p />";
 echo '<input type="submit" name="Setting" value="Сохранить изменения"> </form>';
 

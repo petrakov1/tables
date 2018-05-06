@@ -27,14 +27,14 @@ include "scripts/func.php"; //подключаем библиотеку функ
 			$result = mysqli_query($dblink,"INSERT INTO user (login,password,email,type) VALUES ('$login','$password','$email','$type')") or die("Ошибка " . mysqli_error($dblink)); 
 			if ($result) //пишем данные в БД и авторизовываем пользователя
 			{	
-				header('Location: personal_account.php');
-				
+				header('Refresh:0, personal_account.php');
+
 				// echo "good"; //подключаем шаблон
 			}
 			else echo "<script>alert(\"Некооектные данные. Повторите,пожалйста ввод.\");</script>";
 		}
 		else
-		{	echo "<script>alert(\"Некооектные данные. Повторите,пожалйста ввод.\");</script>"; }
+		{	echo "<script>alert(\"Некооектные данные. Повторите,пожалйста ввод.1\");</script>"; }
 	}
 // }
 

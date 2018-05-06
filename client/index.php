@@ -39,19 +39,22 @@ if ($result->num_rows > 0) {
     <section class="container">
         <div class="main">
         <div id="">
+                    <h1>
+                        <?php echo $row["name"] ?>
+                    </h1>
                     <div id="table-container">
 
                     </div>
                     
-                    <p class="button" onclick="<?php
+                    <p class="button" onclick='<?php
                     
                     if($row["type"]==2)
                     { 
-                        echo "saveProviderOrder()";
+                        echo 'saveProviderOrder();sendProviderResponse("'.$row["email"].'","'.$row["name"].'","'.$link.'");'."' >Отправить ответ заказчику                        ";
                     }
-                    else echo "save()";
+                    else echo 'save();sendClientResponse("'.$row["email"].'","'.$row["name"].'","'.$link.'");'."' >Отправить мои изменения поставщику                    ";
                     
-                    ?>">Сохранить изменения</p>
+                    ?></p>
                     
                     </div>
            

@@ -137,7 +137,15 @@ body {
   color: #ccc;
   font-size: 13px;
 }
-
+table input[type=text] {
+    min-height: 100%;
+width: calc(100% - 4px);
+margin: 0;
+padding: 8px 0;
+}
+td.open {
+padding: 0;
+}
 input {
   font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;
   font-size: 14px;
@@ -229,13 +237,13 @@ div.tab button.active {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   border-top: none;
   margin-bottom: 30px;
-  max-height: 65vh;
+  max-height: 75vh;
   overflow: scroll;
 }
 
 .main {
     max-height: 80vh;
-    min-height: 600px;
+    min-height: 500px;
     background: white;
     display: flex;
     justify-content: space-between;
@@ -325,15 +333,39 @@ input[type=number],.tables .number
     background: #6AACF6;
     color: white;
     text-align: center;
-    padding: 15px;
+    padding: 10px;
     font-size: 14px;
     border-radius: 3px;
-    max-width: 400px;
+    max-width: 500px;
     margin: auto;
-    box-shadow: 0 0 5px rgba(0,0,0,0.15); 
-    margin-top: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    margin-top: 10px;
     border: 0;
+    cursor: pointer;
+}
 
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.close span {
+    height: 2px;
+    width: 20px;
+    background: black;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top:10px;
+    transform: rotate(45deg);
+}
+.close span:last-child {
+   
+    transform: rotate(-45deg); 
+    
 }
 
 .modal {
@@ -357,6 +389,7 @@ input[type=number],.tables .number
 
 .modal form {
     background: white;
+    position: relative;
     padding: 50px 50px; 
     
 }
@@ -409,8 +442,8 @@ input[type=number],.tables .number
     top: 0;
     left: 0;
     width: 100vw;
-    padding: 20px 0;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    padding: 10px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     background: white;
 }
 #nav > div {
@@ -436,4 +469,14 @@ input[type=number],.tables .number
     margin-left: 10px;
     margin-bottom: 10px;
 }
+
+.hidden {
+  visibility: hidden !important;
+}
+
+
+
+
+
+
 

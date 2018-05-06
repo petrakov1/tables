@@ -3,10 +3,14 @@
 function sendMail($order,$url,$address)
 {
 
-$template = file_get_contents("supplier.html");
+$template = file_get_contents("supplier1.html");
 $template = str_replace("[table]",$order,$template);
 $template = str_replace("[link]",$address["link"],$template);
 $template = str_replace("[name]",$address["name"],$template);
+$template = str_replace("[site]",$address["response"]["site"],$template);
+$template = str_replace("[mail]",$address["response"]["email"],$template);
+$template = str_replace("[fio]",$address["response"]["fio"],$template);
+$template = str_replace("[tel]",$address["response"]["tel"],$template);
 
 require 'class.phpmailer.php';
 $subject = "Tables";

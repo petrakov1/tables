@@ -1,7 +1,11 @@
 <?php
-
+ini_set ("session.use_trans_sid", true);
+session_start();
 include '../../scripts/connect.php'; //подключаемся к БД
 include "../../scripts/func.php"; //подключаем библиотеку функций
+if (isset($_SESSION['id'])) 
+{
+	echo "connected";
 
 ?>
 
@@ -29,20 +33,26 @@ include "../../scripts/func.php"; //подключаем библиотеку ф
     <div id="nav">
         <div>
             
-            <a href="">Главная</a>
-            <a href="">Поставщики</a>
-            <a href="">Выход</a>
+            <a href="/tables/personal_account.php">Главная</a>
+            <!-- <a href="">Поставщики</a> -->
+            <?php
+
+                echo "<script>loadUser(".$_SESSION['id'].")</script>";
+                }
+            ?>
+            <a href="/tables/scripts/exit.php">Выход</a>
         </div>
     </div>
     <section class="container">
         <div class="main">
             <div class="list">
                 <div class="search">
-                    <input type="text" name="query" id="query">
+                    <input type="text" name="query" id="query" onkeyup="searchOrders()">
                     <input type="button" value="Поиск" onclick="searchOrders()">
                 </div>
                 <div class="orders" id="ordersList">
                    <?php
+                        
                         loadOrders();
                    ?>
                 </div>
@@ -50,10 +60,10 @@ include "../../scripts/func.php"; //подключаем библиотеку ф
             </div>
             <div class="tables">
                 <div class="tab">
-                    <button class="tablinks active" onclick="openTab(event, 'tab1')">Заказ <span id="name1">Б24_12838</span></button>
-                    <button class="tablinks" onclick="openTab(event, 'tab4')">Поставщики</button>
-                    <button class="tablinks" onclick="openTab(event, 'tab3')">Списки поставщиков</button>
-                    <button class="tablinks" onclick="openTab(event, 'tab2');concatTable();">Сводная таблица заказа <span id="name2">Б24_12838</span></button>
+                    <button class="tablinks active" onclick="openTab(event, 'tab1')">Заказ <span id="name1"></span></button>
+                    <button class="tablinks" onclick="openTab(event, 'tab3')">Таблица поставщиков</button>
+                    <button class="tablinks" onclick="openTab(event, 'tab4');openProvidersLists();">Списки поставщиков</button>
+                    <button class="tablinks" onclick="openTab(event, 'tab5');getProvidersResponse();">Сводная таблица заказа <span id="name2"></span></button>
                     <!-- <button class="tablinks" onclick="openTab(event, 'tab3')"> ...</button> -->
                 </div>
 
@@ -62,12 +72,12 @@ include "../../scripts/func.php"; //подключаем библиотеку ф
 
                     </div>
                     <div>
-                    <input type="number" name="" value="1" id="rows_numbers">
+                    <input type="number"  name="" value="1" id="rows_numbers">
                     <input type="button" value="Добавить строки снизу" class="button button-small" onclick="addRow()">
                 
                     </div>
                     <div>
-                    <input type="text" name="" value="2,3,10-100,10" id="delete_rows">
+                    <input type="text" name=""  class="number"  placeholder="2,3,10-100,10" id="delete_rows">
                     <input type="button" value="Удалить строки" class="button button-small" onclick="removeRow()">
                 
                     </div>
@@ -77,29 +87,35 @@ include "../../scripts/func.php"; //подключаем библиотеку ф
                     <p class="button" onclick="save()">Сохранить изменения</p>
                     
                 </div>
-                <div id="tab2" class="tabcontent ">
-                    <div id="tab2-container">
+                
+                <div id="tab5" class="tabcontent ">
+                    <div id="tab5-container">
 
                     </div>
-                    <p class="button" onclick="save()">Скопировать товары в буфер обмена</p>
                 </div>
                 <div id="tab3" class="tabcontent">
                     <div id="table-container1">
 
                     </div>
                     <div>
-                    <input type="number" name="" value="1" id="rows_numbers">
+                    <input type="number" name="" value="1" id="rows_numbers_provider">
                     <input type="button" value="Добавить строки снизу" class="button button-small" onclick="addRowProviders()">
                 
                     </div>
                     <div>
-                    <input type="text" name="number" value="2,3,10-100,10" id="delete_rows">
-                    <input type="button" value="Удалить строки" class="button button-small" onclick="removeRow()">
+                    <input type="text" class="number" name="number" placeholder="2,3,10-100,10" id="delete_rows_provider">
+                    <input type="button" value="Удалить строки" class="button button-small" onclick="removeRowProviders()">
+                
+                    </div>
+                    <div>
+                    <input type="text"  class="number" name="" placeholder="Название" id="newCol">
+                    <input type="button" value="Добавить столбец" class="button button-small" onclick="addColProviders()">
+                    <!-- <input type="button" value="Удалить столбец" class="button button-small" onclick="removeColProviders()"> -->
                 
                     </div>
                   
                     <p class="button" onclick="saveProviders()">Сохранить изменения</p>
-                    <p class="button" onclick="chooseProviders();createOrder()">Создать список</p>
+                    <p class="button" onclick="chooseProviders()">Создать список</p>
                     
                 </div>
                 <div id="tab4" class="tabcontent ">
@@ -117,9 +133,9 @@ include "../../scripts/func.php"; //подключаем библиотеку ф
         </div>
 
     </section>
-    <div class="modal">
+    <div class="modal modal-order">
         <form id="newOrderForm">
-            <div class="close">
+            <div class="close" onclick='$(".modal-order").removeClass("open");'>
                 <span></span>
                 <span></span>
             </div>
@@ -129,9 +145,9 @@ include "../../scripts/func.php"; //подключаем библиотеку ф
             <input type="submit" value="Создать">
         </form>
     </div>
-    <div class="modal">
+    <div class="modal  modal-list">
         <form id="newListForm">
-            <div class="close">
+            <div class="close" onclick='$(".modal-list").removeClass("open");'>
                 <span></span>
                 <span></span>
             </div>
@@ -143,12 +159,14 @@ include "../../scripts/func.php"; //подключаем библиотеку ф
                     
                 </div>
             </label>
-            <input type="button" onclick="createList()" value="Создать">
+            <input type="button" class="button" onclick="createList()" value="Создать">
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
     <script>
         openProviders();
-        openProvidersLists();
+        new ClipboardJS('.btn');
+        openOrder(parseInt(getCookie("lastOrder")));
     </script>
 </body>
 

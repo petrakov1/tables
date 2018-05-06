@@ -9,8 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		$error = enter(); //функция входа на сайт  
 		if (count($error) == 0) //если нет ошибок, авторизируем юзера 
 		{
-            
-			include '../personal_account.php';
+            header('Refresh:0, /tables/personal_account.php');
+			// include '../personal_account.php';
 			//$admin = is_admin($UID);
         }
         else {

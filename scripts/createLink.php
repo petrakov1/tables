@@ -12,7 +12,7 @@
 //   else{
     // $new_link="http://crossmergedata.com/";
     $new_link=md5(time());
-    $result = mysqli_query($dblink,"INSERT INTO links (order_id,link,type) VALUES ('$id','$new_link','$order_type')") or die("Ошибка " . mysqli_error($dblink)); 
+    $result = mysqli_query($dblink,"INSERT INTO links (order_id,link,type,email) VALUES ('$id','$new_link','$order_type','".$_REQUEST["email"]."')") or die("Ошибка " . mysqli_error($dblink)); 
     if ($result) //пишем данные в БД и авторизовываем пользователя
       {  
           echo $new_link;

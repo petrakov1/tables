@@ -17,8 +17,12 @@ if (isset($_SESSION['id']))
 				// echo "5";
 				$login = htmlspecialchars($_POST['login']);
 				$email=htmlspecialchars($_POST['mail']);
+				$site=htmlspecialchars($_POST['site']);
+				$tel=htmlspecialchars($_POST['tel']);
+				$name=htmlspecialchars($_POST['name']);
+				$surname=htmlspecialchars($_POST['surname']);
 				$id_p=$_SESSION['id'];
-				$rez = mysqli_query($dblink,"UPDATE user SET login='$login', email='$email' WHERE id='$id_p'");
+				$rez = mysqli_query($dblink,"UPDATE user SET login='$login', email='$email', name='$name', surname='$surname', site='$site', phone='$tel' WHERE id='$id_p'");
 				header('Location: personal_account.php');
 				//$admin = is_admin($UID);
 			}
@@ -46,8 +50,6 @@ else
   <section class="container">
     <div class="login">
       <h1>Личный кабинет</h1>
-        <section class="container">
-    <div class="login">
       <h1>Изменить данные</h1>
 
 <?php
@@ -56,7 +58,6 @@ include ('setting.php'); //подключаем файл с формой
 
    </div>
   </section>
-   </div>
-  </section>
+
 </body>
 </html>
